@@ -74,7 +74,6 @@ double SADMVN(arma::mat M, arma::mat C){
   
 }
 
-// For more on using Rcpp click the Help button on the editor toolbar
 
 // [[Rcpp::export]]
 double BivNProb(NumericVector mean, NumericVector cv){
@@ -151,6 +150,21 @@ NumericVector Tnorm(NumericVector mean, NumericVector sd){
   double m = mean[0]; double sd1 = sd[0]; 
   genTruncNormZ( &m, &sd1, &rval); 
   return wrap(rval);
+  
+}
+
+// [[Rcpp::export]]
+NumericVector TnormV(NumericVector mean, NumericVector sd){
+  NumericVector returnY = mean; 
+  double rval;	
+  double m; double sd1; 
+  for (int i = 0; i < returnY.length() ; i++){
+	  m = mean[i];
+	  sd1 = sd[i];
+	  genTruncNormZ( &m, &sd1, &rval);
+	  returnY[i] = rval; 
+  } 
+  return wrap(returnY);
   
 }
 // [[Rcpp::export]]

@@ -9,4 +9,4 @@ Description: More about what it does (maybe more than one
        line)
 License: GPL (>= 2)
 Imports: Rcpp (>= 0.12.0)
-LinkingTo: Rcpp
+LinkingTo: Rcpp (>= 0.12), RcppArmadillo (>= 0.7.960.1.2)

@@ -54,6 +54,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// TnormV
+NumericVector TnormV(NumericVector mean, NumericVector sd);
+RcppExport SEXP lxspline_TnormV(SEXP meanSEXP, SEXP sdSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type sd(sdSEXP);
+    rcpp_result_gen = Rcpp::wrap(TnormV(mean, sd));
+    return rcpp_result_gen;
+END_RCPP
+}
 // sampleBetas
 NumericVector sampleBetas(NumericVector ttY, NumericVector ttX, NumericVector tbetas, NumericVector LAM, NumericVector intLAM, NumericVector p, NumericVector tau);
 RcppExport SEXP lxspline_sampleBetas(SEXP ttYSEXP, SEXP ttXSEXP, SEXP tbetasSEXP, SEXP LAMSEXP, SEXP intLAMSEXP, SEXP pSEXP, SEXP tauSEXP) {
@@ -158,4 +170,48 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(qcopy(a, b, c, d));
     return rcpp_result_gen;
 END_RCPP
+}
+
+RcppExport SEXP lxspline_BivNProb(SEXP, SEXP);
+RcppExport SEXP lxspline_qcopy(SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP lxspline_rtmvn(SEXP, SEXP);
+RcppExport SEXP lxspline_SADMVN(SEXP, SEXP);
+RcppExport SEXP lxspline_sampleBetas(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP lxspline_sdeleteBeta(SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP lxspline_shapesplineDelete(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP lxspline_shapesplineInsert(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP lxspline_sinsertBeta(SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP lxspline_Tnorm(SEXP, SEXP);
+RcppExport SEXP lxspline_TriNProb(SEXP, SEXP);
+
+static const R_CallMethodDef CallEntries[] = {
+    {"lxspline_SADMVN", (DL_FUNC) &lxspline_SADMVN, 2},
+    {"lxspline_BivNProb", (DL_FUNC) &lxspline_BivNProb, 2},
+    {"lxspline_TriNProb", (DL_FUNC) &lxspline_TriNProb, 2},
+    {"lxspline_Tnorm", (DL_FUNC) &lxspline_Tnorm, 2},
+    {"lxspline_TnormV", (DL_FUNC) &lxspline_TnormV, 2},
+    {"lxspline_sampleBetas", (DL_FUNC) &lxspline_sampleBetas, 7},
+    {"lxspline_sinsertBeta", (DL_FUNC) &lxspline_sinsertBeta, 5},
+    {"lxspline_sdeleteBeta", (DL_FUNC) &lxspline_sdeleteBeta, 5},
+    {"lxspline_shapesplineInsert", (DL_FUNC) &lxspline_shapesplineInsert, 6},
+    {"lxspline_shapesplineDelete", (DL_FUNC) &lxspline_shapesplineDelete, 6},
+    {"lxspline_rtmvn", (DL_FUNC) &lxspline_rtmvn, 2},
+    {"lxspline_qcopy", (DL_FUNC) &lxspline_qcopy, 4},
+    {"lxspline_BivNProb",          (DL_FUNC) &lxspline_BivNProb,          2},
+    {"lxspline_qcopy",             (DL_FUNC) &lxspline_qcopy,             4},
+    {"lxspline_rtmvn",             (DL_FUNC) &lxspline_rtmvn,             2},
+    {"lxspline_SADMVN",            (DL_FUNC) &lxspline_SADMVN,            2},
+    {"lxspline_sampleBetas",       (DL_FUNC) &lxspline_sampleBetas,       7},
+    {"lxspline_sdeleteBeta",       (DL_FUNC) &lxspline_sdeleteBeta,       5},
+    {"lxspline_shapesplineDelete", (DL_FUNC) &lxspline_shapesplineDelete, 6},
+    {"lxspline_shapesplineInsert", (DL_FUNC) &lxspline_shapesplineInsert, 6},
+    {"lxspline_sinsertBeta",       (DL_FUNC) &lxspline_sinsertBeta,       5},
+    {"lxspline_Tnorm",             (DL_FUNC) &lxspline_Tnorm,             2},
+    {"lxspline_TriNProb",          (DL_FUNC) &lxspline_TriNProb,          2},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_initlxspline(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

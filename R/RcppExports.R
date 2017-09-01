@@ -17,6 +17,10 @@ Tnorm <- function(mean, sd) {
     .Call('lxspline_Tnorm', PACKAGE = 'lxspline', mean, sd)
 }
 
+TnormV <- function(mean, sd) {
+    .Call('lxspline_TnormV', PACKAGE = 'lxspline', mean, sd)
+}
+
 sampleBetas <- function(ttY, ttX, tbetas, LAM, intLAM, p, tau) {
     .Call('lxspline_sampleBetas', PACKAGE = 'lxspline', ttY, ttX, tbetas, LAM, intLAM, p, tau)
 }
